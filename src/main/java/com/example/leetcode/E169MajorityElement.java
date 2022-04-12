@@ -88,14 +88,16 @@ public class E169MajorityElement {
      * @return 出现次数最多的元素
      */
     public static int majorityElement3(int[] nums) {
-        int candidate = nums[0];
-        int count = 1;
+        int candidate = 0, count = 0;
         for (int num : nums) {
-            if (num == candidate) {
-                count++;
-            } else if (--count == 0) {
+            if (count == 0) {
                 candidate = num;
                 count = 1;
+            }
+            if (num == candidate) {
+                count++;
+            } else {
+                count--;
             }
         }
         return candidate;

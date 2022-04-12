@@ -54,7 +54,7 @@ public class M229MajorityElementII {
         // 出现超过 n/3 次的元素一定小于等于 3-1=2 个
         List<Integer> result = new ArrayList<>(2);
         // 投票阶段
-        int candidate1 = 0, candidate2 = 0;
+        int candidate1 = nums[0], candidate2 = nums[0];
         int count1 = 0, count2 = 0;
         for (int num : nums) {
             // 如果和候选人1匹配上了,那么候选人1的票数+1

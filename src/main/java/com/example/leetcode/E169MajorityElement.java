@@ -89,7 +89,7 @@ public class E169MajorityElement {
      * @return 出现次数最多的元素
      */
     public static int majorityElement3(int[] nums) {
-        int candidate = 0, count = 0;
+        int candidate = nums[0], count = 0;
         // 投票阶段
         for (int num : nums) {
             // 如果和候选人匹配上,那么候选人的票数+1

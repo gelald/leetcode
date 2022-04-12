@@ -17,7 +17,8 @@ import java.util.stream.Collectors;
  */
 public class E169MajorityElement {
     public static void main(String[] args) {
-        int[] nums = new int[]{1, 1, 3, 2, 3, 2, 3, 3, 3};
+        // int[] nums = new int[]{1, 1, 3, 2, 3, 2, 3, 3, 3};
+        int[] nums = new int[]{1, 1, 1, 1, 2, 3, 3, 3, 3};
         System.out.println(majorityElement1(nums));
         System.out.println(majorityElement2(nums));
         System.out.println(majorityElement3(nums));
@@ -89,6 +90,7 @@ public class E169MajorityElement {
      */
     public static int majorityElement3(int[] nums) {
         int candidate = 0, count = 0;
+        // 投票阶段
         for (int num : nums) {
             // 如果和候选人匹配上,那么候选人的票数+1
             if (candidate == num) {
@@ -105,6 +107,17 @@ public class E169MajorityElement {
             // 如果和候选人没有匹配上,且还有票数,那么票数-1
             count--;
         }
-        return candidate;
+        // 计数阶段
+        count = 0;
+        for (int num : nums) {
+            if (num == candidate) {
+                count++;
+            }
+        }
+        // 检查是否超过一半
+        if (count > nums.length / 2) {
+            return candidate;
+        }
+        return -1;
     }
 }

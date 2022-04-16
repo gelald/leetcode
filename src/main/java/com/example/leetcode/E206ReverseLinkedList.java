@@ -41,8 +41,12 @@ public class E206ReverseLinkedList {
         listNode.next.next = new ListNode(3);
         listNode.next.next.next = new ListNode(4);
         listNode.next.next.next.next = new ListNode(5);
+        System.out.print("原始链表：");
+        printList(listNode);
+        System.out.print("\n反转链表：");
         printList(reverseList1(listNode));
-        printList(reverseList2(listNode));
+        // System.out.print("\n反转链表：");
+        // printList(reverseList2(listNode));
     }
 
     /**

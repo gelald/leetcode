@@ -37,15 +37,12 @@ public class E226InvertBinaryTree {
         root.left.right = new TreeNode(3);
         root.right.left = new TreeNode(6);
         root.right.right = new TreeNode(9);
-
-        TreeNode newTree1 = invertTree1(root);
-        System.out.print("[ ");
-        print(newTree1);
-        System.out.print("]");
-        TreeNode newTree2 = invertTree2(root);
-        System.out.print("[ ");
-        print(newTree2);
-        System.out.print("]");
+        System.out.print("原始二叉树：");
+        print(root);
+        System.out.print("\n反转二叉树：");
+        print(invertTree1(root));
+        // System.out.print("\n反转二叉树：");
+        // print(invertTree2(root));
     }
 
     /**
@@ -75,7 +72,7 @@ public class E226InvertBinaryTree {
      * 广度优先遍历
      * 使用栈存储需要交换左右子树的节点
      * 每次从栈中取出一个节点进行交换
-     * 交换完毕后把节弹栈
+     * 交换完毕后把节点弹栈
      * 并继续把节点的左右子树入栈
      * <br/>
      * 时间: 0ms 100%
@@ -110,6 +107,7 @@ public class E226InvertBinaryTree {
         if (root == null) {
             return;
         }
+        System.out.print("[");
         Deque<TreeNode> deque = new LinkedList<>();
         deque.offerFirst(root);
         while (!deque.isEmpty()) {
@@ -123,5 +121,6 @@ public class E226InvertBinaryTree {
                 deque.offer(peek.right);
             }
         }
+        System.out.print("]");
     }
 }

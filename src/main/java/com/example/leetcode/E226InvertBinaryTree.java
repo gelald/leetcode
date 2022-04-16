@@ -1,5 +1,6 @@
 package com.example.leetcode;
 
+import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -12,6 +13,7 @@ import java.util.LinkedList;
  * 输入：root = [2,1,3]
  * 输出：[2,3,1]
  * <br/>
+ *
  * @author WuYingBin
  * date: 2022/4/15
  */
@@ -20,12 +22,18 @@ public class E226InvertBinaryTree {
         int val;
         TreeNode left;
         TreeNode right;
-        TreeNode() {}
-        TreeNode(int val) { this.val = val; }
+
+        TreeNode() {
+        }
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+
         TreeNode(int val, TreeNode left, TreeNode right) {
-         this.val = val;
-         this.left = left;
-         this.right = right;
+            this.val = val;
+            this.left = left;
+            this.right = right;
         }
     }
 
@@ -38,11 +46,11 @@ public class E226InvertBinaryTree {
         root.right.left = new TreeNode(6);
         root.right.right = new TreeNode(9);
         System.out.print("原始二叉树：");
-        print(root);
+        printTree(root);
         System.out.print("\n反转二叉树：");
-        print(invertTree1(root));
+        printTree(invertTree1(root));
         // System.out.print("\n反转二叉树：");
-        // print(invertTree2(root));
+        // printTree(invertTree2(root));
     }
 
     /**
@@ -50,9 +58,9 @@ public class E226InvertBinaryTree {
      * 每次交换节点的左右子树
      * 并递归地操作节点地左子树和右子树
      * <br/>
-     * 时间: 0ms 100%
-     * 内存: 38.8M 64.57%
-     * <br/>
+     * 时间: O(n) 0ms 100%
+     * 内存: O(n) 38.8M 64.57%
+     *
      * @param root 二叉树根节点
      * @return 反转的二叉树
      */
@@ -75,9 +83,9 @@ public class E226InvertBinaryTree {
      * 交换完毕后把节点弹栈
      * 并继续把节点的左右子树入栈
      * <br/>
-     * 时间: 0ms 100%
-     * 内存: 39.1M 18.85%
-     * <br/>
+     * 时间: O(n) 0ms 100%
+     * 内存: O(n) 39.1M 18.85%
+     *
      * @param root 二叉树根节点
      * @return 反转的二叉树
      */
@@ -85,25 +93,25 @@ public class E226InvertBinaryTree {
         if (root == null) {
             return null;
         }
-        Deque<TreeNode> deque = new LinkedList<>();
+        Deque<TreeNode> deque = new ArrayDeque<>();
         deque.offerFirst(root);
         while (!deque.isEmpty()) {
-            TreeNode peek = deque.peek();
+            TreeNode peek = deque.peekFirst();
             TreeNode tmp = peek.left;
             peek.left = peek.right;
             peek.right = tmp;
-            deque.poll();
+            deque.pollFirst();
             if (peek.left != null) {
-                deque.offer(peek.left);
+                deque.offerFirst(peek.left);
             }
             if (peek.right != null) {
-                deque.offer(peek.right);
+                deque.offerFirst(peek.right);
             }
         }
         return root;
     }
 
-    public static void print(TreeNode root) {
+    public static void printTree(TreeNode root) {
         if (root == null) {
             return;
         }
@@ -111,14 +119,13 @@ public class E226InvertBinaryTree {
         Deque<TreeNode> deque = new LinkedList<>();
         deque.offerFirst(root);
         while (!deque.isEmpty()) {
-            TreeNode peek = deque.peek();
+            TreeNode peek = deque.pollFirst();
             System.out.print(peek.val + " ");
-            deque.poll();
             if (peek.left != null) {
-                deque.offer(peek.left);
+                deque.offerFirst(peek.left);
             }
             if (peek.right != null) {
-                deque.offer(peek.right);
+                deque.offerFirst(peek.right);
             }
         }
         System.out.print("]");

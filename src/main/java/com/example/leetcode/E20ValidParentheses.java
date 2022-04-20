@@ -69,7 +69,7 @@ public class E20ValidParentheses {
         map.put(')', '(');
         map.put(']', '[');
         map.put('}', '{');
-        Deque<Character> deque = new LinkedList<>();
+        Deque<Character> deque = new ArrayDeque<>();
         char[] charArray = s.toCharArray();
         for (char item : charArray) {
             if (map.containsKey(item)) {

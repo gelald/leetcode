@@ -94,7 +94,7 @@ public class E155MinStack {
          * 如果删除后栈空了,那么最小元素就是默认值
          */
         public void pop() {
-            Integer peek = this.deque.peek();
+            Integer peek = this.deque.peekFirst();
             if (peek == null) {
                 throw new RuntimeException();
             }
@@ -106,12 +106,12 @@ public class E155MinStack {
                     this.min = 0;
                     return;
                 }
-                peek = this.deque.peek();
+                peek = this.deque.peekFirst();
                 if (peek == null) {
                     throw new RuntimeException();
                 }
                 // 重新寻找最小值
-                this.min = this.deque.peek();
+                this.min = this.deque.peekFirst();
                 for (Integer integer : this.deque) {
                     if (integer < min) {
                         min = integer;
@@ -126,7 +126,7 @@ public class E155MinStack {
          * @return 堆栈顶部的元素
          */
         public int top() {
-            Integer peek = this.deque.peek();
+            Integer peek = this.deque.peekFirst();
             if (peek == null) {
                 throw new RuntimeException();
             }
@@ -155,32 +155,32 @@ public class E155MinStack {
         public Deque<Integer> minDeque;
 
         public MinStack2() {
-            this.deque = new LinkedList<>();
-            this.minDeque = new LinkedList<>();
-            this.minDeque.push(Integer.MAX_VALUE);
+            this.deque = new ArrayDeque<>();
+            this.minDeque = new ArrayDeque<>();
+            this.minDeque.offerFirst(Integer.MAX_VALUE);
         }
 
         public void push(int x) {
             if (this.deque.isEmpty()) {
-                this.deque.push(x);
-                this.minDeque.push(x);
+                this.deque.offerFirst(x);
+                this.minDeque.offerFirst(x);
             } else {
-                this.deque.push(x);
-                this.minDeque.push(Math.min(x, this.minDeque.getFirst()));
+                this.deque.offerFirst(x);
+                this.minDeque.offerFirst(Math.min(x, this.minDeque.getFirst()));
             }
         }
 
         public void pop() {
-            this.deque.poll();
-            this.minDeque.poll();
+            this.deque.pollFirst();
+            this.minDeque.pollFirst();
         }
 
         public int top() {
-            return this.deque.getFirst();
+            return this.deque.peekFirst();
         }
 
         public int getMin() {
-            return this.minDeque.getFirst();
+            return this.minDeque.peekFirst();
         }
     }
 
@@ -200,22 +200,22 @@ public class E155MinStack {
 
         public void push(int x) {
             if (this.deque.isEmpty()) {
-                this.deque.push(new Integer[]{x, x});
+                this.deque.offerFirst(new Integer[]{x, x});
             } else {
-                this.deque.push(new Integer[]{x, Math.min(x, this.deque.getFirst()[1])});
+                this.deque.offerFirst(new Integer[]{x, Math.min(x, this.deque.getFirst()[1])});
             }
         }
 
         public void pop() {
-            this.deque.poll();
+            this.deque.pollFirst();
         }
 
         public int top() {
-            return this.deque.getFirst()[0];
+            return this.deque.peekFirst()[0];
         }
 
         public int getMin() {
-            return this.deque.getFirst()[1];
+            return this.deque.peekFirst()[1];
         }
     }
 }

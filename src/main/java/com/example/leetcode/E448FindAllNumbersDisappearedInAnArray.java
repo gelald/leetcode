@@ -20,9 +20,12 @@ import java.util.Set;
  */
 public class E448FindAllNumbersDisappearedInAnArray {
     public static void main(String[] args) {
-        int[] nums = new int[]{4, 3, 2, 7, 8, 2, 3, 1};
-        // int[] nums = new int[]{1,1};
-        System.out.println(findDisappearedNumbers2(nums));
+        int[] nums1 = new int[]{4,3,2,7,8,2,3,1};
+        int[] nums2 = new int[]{1,1,1,1,1,1,1};
+        System.out.println(findDisappearedNumbers1(nums1));
+        System.out.println(findDisappearedNumbers1(nums2));
+        System.out.println(findDisappearedNumbers2(nums1));
+        System.out.println(findDisappearedNumbers2(nums2));
     }
 
     /**

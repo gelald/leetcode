@@ -1,4 +1,4 @@
-package com.example.leetcode;
+package com.example.leetcode.subject;
 
 import java.util.*;
 

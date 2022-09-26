@@ -1,4 +1,4 @@
-package com.example.leetcode;
+package com.example.leetcode.subject;
 
 /**
  * 两个整数之间的 汉明距离 指的是这两个数字对应二进制位不同的位置的数目。

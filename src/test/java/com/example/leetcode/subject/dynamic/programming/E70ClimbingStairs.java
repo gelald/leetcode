@@ -21,11 +21,12 @@ public class E70ClimbingStairs {
 
     @Test
     void climbStairs() {
-        System.out.println(climbStairs03(2));
-        System.out.println(climbStairs03(3));
-        System.out.println(climbStairs03(4));
-        System.out.println(climbStairs03(5));
+        System.out.println(climbStairs04(2));
+        System.out.println(climbStairs04(3));
+        System.out.println(climbStairs04(4));
+        System.out.println(climbStairs04(5));
         System.out.println(climbStairs03(45));
+        System.out.println(climbStairs04(45));
     }
 
     /**
@@ -70,5 +71,21 @@ public class E70ClimbingStairs {
             r = p + q;
         }
         return r;
+    }
+
+    /**
+     * 动态规划
+     */
+    public int climbStairs04(int n) {
+        int[] dp = new int[n + 1];
+        dp[0] = 0;
+        dp[1] = 1;
+        dp[2] = 2;
+        for (int i = 3; i <= n; i++) {
+            // 要到达第 i 级阶梯，只能从 i-1 阶级走1步，或者从 i-2 阶级走2步
+            // 所以到达第 i 级阶梯的方法数是到达 i-1 阶级的方法数 + 到达 i-2 阶级的方法数
+            dp[i] = dp[i - 1] + dp[i - 2];
+        }
+        return dp[n];
     }
 }

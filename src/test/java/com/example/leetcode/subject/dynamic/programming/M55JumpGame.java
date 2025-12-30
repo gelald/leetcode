@@ -23,7 +23,11 @@ public class M55JumpGame {
         System.out.println(jumpGame02(new int[]{3, 2, 1, 0, 4}));
     }
 
-    ？
+    /**
+     * 动态规划，当前位置i是否可达依赖前面元素j
+     * <br>
+     * f(i) = f(j) && nums[j] >= i - j
+     */
     public boolean jumpGame01(int[] nums) {
         int length = nums.length;
         if (length == 1) {
@@ -46,6 +50,9 @@ public class M55JumpGame {
         return dp[length - 1];
     }
 
+    /**
+     * 贪心算法
+     */
     public boolean jumpGame02(int[] nums) {
         int length = nums.length;
         int max = 0;
